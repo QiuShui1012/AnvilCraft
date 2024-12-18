@@ -18,7 +18,9 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
@@ -254,5 +256,17 @@ public class SimpleChuteBlock extends BaseEntityBlock implements
     @Override
     public @Nullable Property<?> getChangeableProperty(BlockState blockState) {
         return FACING;
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public @NotNull BlockState rotate(@NotNull BlockState state, @NotNull Rotation rotation) {
+        return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public @NotNull BlockState mirror(@NotNull BlockState state, @NotNull Mirror mirror) {
+        return state.rotate(mirror.getRotation(state.getValue(FACING)));
     }
 }
