@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import java.util.List;
 
 @Mixin(value = EnchantmentHelper.class, priority = 943)
-public class EnchantmentHelperVanillaMixin {
+abstract class EnchantmentHelperVanillaMixin {
 
     @Unique
     private static final List<Class<? extends Enchantment>> DISABLED_ENCHANTMENTS = List.of(

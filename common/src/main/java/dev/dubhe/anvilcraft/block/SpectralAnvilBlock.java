@@ -1,7 +1,9 @@
 package dev.dubhe.anvilcraft.block;
 
 import com.mojang.math.MethodsReturnNonnullByDefault;
+import dev.dubhe.anvilcraft.api.hammer.IHammerRemovable;
 import dev.dubhe.anvilcraft.entity.FallingSpectralBlockEntity;
+import dev.dubhe.anvilcraft.util.MagnetUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -37,7 +39,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
 @SuppressWarnings("deprecation")
-public class SpectralAnvilBlock extends AbstractGlassBlock {
+public class SpectralAnvilBlock extends AbstractGlassBlock implements IHammerRemovable {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
     private static final Component CONTAINER_TITLE = Component.translatable("container.repair");
@@ -130,13 +132,13 @@ public class SpectralAnvilBlock extends AbstractGlassBlock {
         BlockPos neighborPos,
         boolean movedByPiston
     ) {
-        boolean hasNeighborSignal = level.hasNeighborSignal(pos);
+        boolean hasNeighborSignal = MagnetUtil.hasMagnetism(level, pos);
         boolean currentPowered = state.getValue(POWERED);
         if (hasNeighborSignal && !currentPowered) {
-            level.scheduleTick(pos, this, 4);
-            level.setBlock(pos, state.setValue(POWERED, Boolean.TRUE), 2);
+            level.setBlockAndUpdate(pos, state.setValue(POWERED, true));
         } else if (!hasNeighborSignal && currentPowered) {
-            level.setBlock(pos, state.setValue(POWERED, Boolean.FALSE), 2);
+            level.scheduleTick(pos, this, 4);
+            level.setBlockAndUpdate(pos, state.setValue(POWERED, false));
         }
     }
 }
