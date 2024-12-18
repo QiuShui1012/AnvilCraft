@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(AnvilMenu.class)
-public class AnvilMenuMixin {
+abstract class AnvilMenuMixin {
     @Inject(method = "isValidBlock", at = @At("HEAD"), cancellable = true)
     private void voj(BlockState state, CallbackInfoReturnable<Boolean> cir) {
         cir.setReturnValue(state.is(ModBlocks.GIANT_ANVIL.get()) || state.is(BlockTags.ANVIL));
