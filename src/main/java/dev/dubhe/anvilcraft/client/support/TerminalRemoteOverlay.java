@@ -1,6 +1,7 @@
 package dev.dubhe.anvilcraft.client.support;
 
 import com.mojang.blaze3d.platform.InputConstants;
+import dev.anvilcraft.lib.v2.rendering.AnvilLibRendering;
 import dev.anvilcraft.lib.v2.util.stack.UnlimitedItemStack;
 import dev.dubhe.anvilcraft.AnvilCraft;
 import dev.dubhe.anvilcraft.api.StoragePortManager;
@@ -59,7 +60,7 @@ public final class TerminalRemoteOverlay {
     private static final int GRID_Y = 18;
     private static final int SEARCH_Y = 6;
     private static final int REFRESH_INTERVAL = 20;
-    private static final ResourceLocation NOTICE_BACKGROUND = AnvilCraft.of("flex_button/shaded_1px");
+    private static final ResourceLocation NOTICE_BACKGROUND = AnvilLibRendering.of("flex_button/shaded_1px");
     /** 内容尚未加载完成时的快速重试间隔（tick）。 */
     private static final int FAST_RELOAD_INTERVAL = 5;
     /**

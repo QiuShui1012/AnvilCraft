@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.mojang.blaze3d.platform.InputConstants;
 import com.mojang.blaze3d.vertex.PoseStack;
+import dev.anvilcraft.lib.v2.rendering.AnvilLibRendering;
 import dev.anvilcraft.lib.v2.util.MathUtil;
 import dev.anvilcraft.lib.v2.util.Scrollable;
 import dev.anvilcraft.lib.v2.util.stack.UnlimitedItemStack;
@@ -122,8 +123,8 @@ public class StorageScreen extends AbstractContainerScreen<StorageMenu> {
     private static final ResourceLocation NBT_FOLD = StorageScreen.texture("nbt_fold");
     private static final ResourceLocation SLIDER = StorageScreen.texture("slider_big");
     private static final ResourceLocation FLIP = StorageScreen.texture("flip");
-    private static final ResourceLocation FLYOUT_BACK = AnvilCraft.of("flex_button/shaded_1px");
-    private static final ResourceLocation FLYOUT_POINTER = AnvilCraft.of("flex_button/pointer");
+    private static final ResourceLocation FLYOUT_BACK = AnvilLibRendering.of("flex_button/shaded_1px");
+    private static final ResourceLocation FLYOUT_POINTER = AnvilLibRendering.of("flex_button/pointer");
     private static final ResourceLocation SMALL_FONT = ResourceLocation.fromNamespaceAndPath("anvilcraft", "small");
     private static final int BG_WIDTH = 300;
     private static final int BG_HEIGHT = 222;
